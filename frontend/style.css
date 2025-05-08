@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* Main Section */
 .mainPage {
   width: 100%;
   min-height: 100vh;
@@ -31,15 +32,17 @@ nav ul.active {
 .burger {
   display: none;
   cursor: pointer;
-  flex-direction: column;
-  gap: 5px;
+  z-index: 1000;
+  padding: 5px;
 }
 .burger span {
+  display: block;
   width: 25px;
   height: 3px;
-  background: white;
-  display: block;
-  border-radius: 2px;
+  background-color: white;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+  border-radius: 3px;
 }
 span {
   font-weight: bold;
@@ -164,6 +167,7 @@ button:hover {
 .inputSection p:hover {
   color: black;
 }
+/* Resort's Section */
 .resorts {
   padding: 60px 20px;
   background-color: #fff;
@@ -237,6 +241,158 @@ button:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
+.resort-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  width: 50%;
+}
+.resort-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.card-content {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  transition: bottom 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+.resort-card.active {
+  transform: scale(1.05);
+  z-index: 100;
+}
+.resort-card.active .card-content {
+  bottom: 0;
+}
+.resort-card.active img {
+  transform: scale(1.1);
+}
+/* Game Section */
+.game-section {
+  width: 100%;
+  padding: 60px 20px;
+  background: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.game-section p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.generate-btn {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background: #007bff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.generate-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: #0056b3;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  perspective: 1000px;
+}
+
+.travel-card {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.travel-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.travel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.travel-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+  text-align: left;
+}
+
+.travel-card-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+}
+
+.travel-card-content p {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin: 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Last Section */
 .lastSection {
   width: 100%;
   height: 100vh;
@@ -355,60 +511,225 @@ button:hover {
   margin-top: 20px;
   border-top: 1px solid #ddd;
 }
-@media (max-width: 768px) {
-  .burger {
-    display: flex;
+
+/* Responsive  for resort cards */
+@media screen and (max-width: 768px) {
+  .fourImagesDIv {
+    max-width: 100%;
   }
-  nav ul {
-    display: none;
+  
+  .topDIv,
+  .bottomDiv {
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.8);
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    padding: 10px;
-    border-radius: 8px;
   }
-  nav ul.active {
-    display: flex;
+  
+  .resort-card {
+    width: 100%;
+  }
+  
+  .resort-card img {
+    height: 200px;
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .imagesDiv {
+    width: 95%;
   }
   .inputSection {
-    margin: 50px 0;
+    margin: 150px auto;
     width: 90%;
   }
+}
+
+@media screen and (max-width: 768px) {
+  .burger {
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav {
+    position: relative;
+  }
+
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+
+  nav ul.active {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  nav ul a {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  nav ul a:last-child {
+    border-bottom: none;
+  }
+
+  nav ul li {
+    font-size: 18px;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+  }
+
+  nav ul li:hover {
+    opacity: 1;
+    color: white;
+  }
+
+  .inputSection {
+    margin: 100px auto;
+  }
+
   .inputSection p {
     font-size: 24px;
     text-align: center;
   }
-  .inputDiv {
+
+  .mainImage, .fourImagesDIv {
+    flex: 100%;
+    max-width: 100%;
+  }
+
+  .footer {
+    padding: 20px;
+  }
+
+  .footer-links ul {
     flex-direction: column;
+    text-align: center;
     gap: 10px;
-    padding: 15px;
   }
-  input {
-    width: 100%;
+
+  /* Burger Animation */
+  .burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
   }
-  .inputIconDiv {
-    width: 100%;
-    justify-content: center;
-    padding: 10px;
+
+  .burger.active span:nth-child(2) {
+    opacity: 0;
   }
+
+  .burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  nav span {
+    font-size: 30px;
+  }
+
+  .inputSection {
+    margin: 80px auto;
+  }
+
+  .inputSection p {
+    font-size: 20px;
+  }
+
   .resortsTitles h1 {
-    font-size: 26px;
+    font-size: 24px;
   }
+
   .resortsTitles p {
     font-size: 14px;
   }
-  .insideDiv {
-    padding: 0 10px;
-  }
-  .insideDiv button {
-    padding: 12px;
-    font-size: 18px;
-  }
-  .footer-links ul {
+
+  .topDiv, .bottomDiv {
     flex-direction: column;
-    align-items: center;
+  }
+
+  .topDiv img, .bottomDiv img {
+    width: 100%;
+  }
+
+  .social {
     gap: 15px;
+  }
+
+  .social i {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .fourImagesDIv {
+    height: auto;
+  }
+  
+  .topDIv,
+  .bottomDiv {
+    height: 200px;
+  }
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* Responsive  for game section */
+@media screen and (max-width: 768px) {
+  .game-section h2 {
+    font-size: 2rem;
+  }
+
+  .game-section p {
+    font-size: 1rem;
+  }
+
+  .generate-btn {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+  }
+
+  .travel-card {
+    width: 280px;
+    height: 380px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .game-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .generate-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .travel-card {
+    width: 260px;
+    height: 360px;
   }
 }

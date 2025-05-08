@@ -1,4 +1,5 @@
 import User from "../models/user.js";
+import bcrypt from "bcrypt"
 
 export const register = async (req, res) => {
   try {
@@ -18,10 +19,14 @@ export const register = async (req, res) => {
       });
     }
 
+    
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const user = new User({
       name: username,
       email,
-      password: password,
+      password: hashedPassword,
     });
 
     await user.save();
@@ -37,16 +42,14 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const { email, password } = req.body; // 'email' field is expected
+    const { email, password } = req.body;
 
-    // Checking if both fields are provided
     if (!email || !password) {
       return res
         .status(400)
         .json({ success: false, message: "შეავსეთ ყველა ველი" });
     }
 
-    // Finding user by email
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       return res
@@ -54,17 +57,17 @@ export const login = async (req, res) => {
         .json({ success: false, message: "მეილი არასწორია" });
     }
 
-    // Checking if the password matches the one in the database
-    if (password !== existingUser.password) {
+    // Compare password with hashed password
+    const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+    if (!isPasswordValid) {
       return res
         .status(400)
         .json({ success: false, message: "პაროლი არასწორია" });
     }
 
-    // If login is successful
     res
       .status(200)
-      .json({ success: true, message: "თქვენ წარმატებით შეხვდით!" });
+      .json({ success: true, message: "თქვენ წარმატებით შეხვედით!" });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ success: false, message: "სერვერის შეცდომა" });

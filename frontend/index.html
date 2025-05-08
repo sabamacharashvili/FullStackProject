@@ -20,6 +20,11 @@
       <header>
         <nav>
           <span>TRAVEL</span>
+          <div class="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
           <ul>
             <a href="#"> <li>Home</li> </a>
             <a href="#"><li>Destination</li></a>
@@ -57,21 +62,78 @@
       </div>
     
       <div class="imagesDiv">
-        <div class="mainImage">
-          <img src="https://images.pexels.com/photos/3559972/pexels-photo-3559972.jpeg?auto=compress&cs=tinysrgb&w=600" />
+        <div class="mainImage resort-card">
+          <img src="https://images.pexels.com/photos/3559972/pexels-photo-3559972.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tropical Paradise" />
+          <div class="card-content">
+            <h3>Batumi</h3>
+            <p>Experience the ultimate beach getaway in this pristine tropical paradise. </p>
+            <div class="card-details">
+              <span class="price">From $299/night</span>
+              <button class="book-now">Book Now</button>
+            </div>
+          </div>
         </div>
         <div class="fourImagesDIv">
           <div class="topDIv">
-            <img src="https://images.pexels.com/photos/2253821/pexels-photo-2253821.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tropical View 1" />
-            <img src="https://images.pexels.com/photos/2339009/pexels-photo-2339009.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tropical View 2" />
+            <div class="resort-card">
+              <img src="https://images.pexels.com/photos/2253821/pexels-photo-2253821.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mountain Retreat" />
+              <div class="card-content">
+                <h3>Mountain Retreat</h3>
+                <p>Escape to the serenity of the mountains. Perfect for hiking, skiing, and experiencing nature at its finest.</p>
+                <div class="card-details">
+                  <span class="price">From $199/night</span>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+            </div>
+            <div class="resort-card">
+              <img src="https://images.pexels.com/photos/2339009/pexels-photo-2339009.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Desert Oasis" />
+              <div class="card-content">
+                <h3>Desert Oasis</h3>
+                <p>Discover the magic of the desert. Luxury camping, stargazing, and unforgettable sunsets.</p>
+                <div class="card-details">
+                  <span class="price">From $249/night</span>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="bottomDiv">
-            <img src="https://images.pexels.com/photos/1731660/pexels-photo-1731660.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ocean Scene 1" />
-            <img src="https://images.pexels.com/photos/3648269/pexels-photo-3648269.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ocean Scene 2" />
+            <div class="resort-card">
+              <img src="https://images.pexels.com/photos/1731660/pexels-photo-1731660.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Island Resort" />
+              <div class="card-content">
+                <h3>Island Resort</h3>
+                <p>Your private island getaway. Exclusive beaches, water sports, and world-class dining.</p>
+                <div class="card-details">
+                  <span class="price">From $399/night</span>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+            </div>
+            <div class="resort-card">
+              <img src="https://images.pexels.com/photos/3648269/pexels-photo-3648269.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Coastal Villa" />
+              <div class="card-content">
+                <h3>Coastal Villa</h3>
+                <p>Luxurious coastal living with breathtaking ocean views. Perfect for romantic getaways.</p>
+                <div class="card-details">
+                  <span class="price">From $349/night</span>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
+    
+    <div class="game-section">
+      <h2>Discover Your Next Adventure</h2>
+      <p>Click the button to reveal a random dream destination!</p>
+      <button id="generateCard" class="generate-btn">Generate Destination</button>
+      <div id="cardContainer" class="card-container">
+     
+      </div>
+    </div>
     <section class="lastSection">
       <div id="photoDiv">
         <div class="insideDiv">
@@ -105,7 +167,7 @@
       </div>
     
       <div class="footer-bottom">
-        © 2025 Beaches. All rights reserved.
+        2025 Beaches. All rights reserved.
       </div>
     </footer>
     
@@ -114,4 +176,3 @@
 
   </body>
 </html>
-
